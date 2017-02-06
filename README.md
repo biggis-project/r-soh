@@ -1,2 +1,2 @@
-# r-soh
+# soh
 Hotspot analysis and stability metrics

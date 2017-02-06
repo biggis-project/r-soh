@@ -1,0 +1,16 @@
+Package: soh
+Type: Package
+Title: Hotspot analysis and stability metrics
+Version: 0.1
+Date: 2017-02-06
+Author: Viliam Simko, Julian Bruns
+Suggests:
+    knitr,
+    testthat
+Maintainer: Viliam Simko <viliam.simko@gmail.com>
+Description: Hotspot analysis and stability metrics
+License: MIT
+URL: https://github.com/biggis-project/soh
+BugReports: https://github.com/biggis-project/soh/issues
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1
