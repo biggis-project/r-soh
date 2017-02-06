@@ -4,6 +4,10 @@ Title: Hotspot analysis and stability metrics
 Version: 0.1
 Date: 2017-02-06
 Author: Viliam Simko, Julian Bruns
+LazyData: yes
+Imports:
+    raster,
+    scales
 Suggests:
     knitr,
     testthat
