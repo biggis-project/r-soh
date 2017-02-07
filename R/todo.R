@@ -1,5 +1,10 @@
-#' @noRd
+#' This function runs the actual evaluation.
+#' @author Viliam Simko
+#'
 #' @note TODO: child is computed twice - memoization might help
+#' @importFrom raster quantile
+#' @import utils
+#' @noRd
 eval_getisord <- function(
   myraster, st, interval,
   wgen = function(wsize) weight_matrix_circular_fade(wsize, wsize/4)
