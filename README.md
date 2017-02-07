@@ -15,7 +15,15 @@ citation("soh")
 ## Basic example
 ```r
 library(soh)
-# TODO ...
+set.seed(21)
+
+r <- raster(matrix(rnorm(2500), 50))
+w <- weight_matrix_circular_fade(11,2)
+g <- GetisOrd(r, w)
+
+plot_temp_map(r)
+plot_weight_matrix(w)
+plot_zscore(g, sigma_thresh = 1.9)
 ```
 
 ## Download and Install
