@@ -6,15 +6,17 @@ Date: 2017-02-06
 Author: Viliam Simko, Julian Bruns
 LazyData: yes
 Imports:
-    raster,
-    dplyr,
-    scales
+  raster,
+  dplyr,
+  scales
 Suggests:
-    knitr,
-    testthat
+  knitr,
+  testthat
 Maintainer: Viliam Simko <viliam.simko@gmail.com>
-Description: Hotspot analysis and stability metrics
-License: MIT
+Description: Hotspot analysis and stability metrics. This package provides the
+  standard Getis-Ord G* statistics applied to raster data and also a modified
+  Focal Getis-Ord which is more stable in terms of finding hotspots.
+License: MIT + file LICENSE
 URL: https://github.com/biggis-project/soh
 BugReports: https://github.com/biggis-project/soh/issues
 VignetteBuilder: knitr
