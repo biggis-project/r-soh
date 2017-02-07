@@ -1,11 +1,18 @@
 #' Standard Getis-Ord G* statistics.
 #'
 #' @param r Input raster layer
-#' @return Returns a list containing:
+#'
+#' @return Returns a list used in the function \link{GetisOrd}:
 #' \item{rmean}{Global mean of all raster cells.}
 #' \item{n}{Number of all cells within the raster.}
 #' \item{SD}{Standard deviation of all raster cells (single value)}
 #' \item{MEAN}{Same as rmean in standard Getis-Ord}
+#'
+#' @examples
+#' r <- raster( matrix(rnorm(400), 20, 20) )
+#' w <- weight_matrix_circular_fade(7, 2)
+#' st <- GetisOrdStandardStats(r)
+#' plot(GetisOrd(r, w, st))
 #'
 #' @export
 GetisOrdStandardStats <- function(r) {

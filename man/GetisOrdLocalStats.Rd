@@ -7,12 +7,12 @@
 GetisOrdLocalStats(r, focus_matrix)
 }
 \arguments{
-\item{r}{input raster}
+\item{r}{Input raster}
 
 \item{focus}{Square matrix with odd number of rows/column and boolean cells.}
 }
 \value{
-Returns a list containing:
+Returns a list used in the function \link{GetisOrd}:
 \item{rmean}{Global mean of all raster cells.}
 \item{n}{Number of all cells within the raster.}
 \item{SD}{A raster where each cell corresponds to a focal standard deviation
@@ -23,5 +23,13 @@ around the cell given by the matrix \code{focus}}
 }
 \description{
 Locality-aware Getis-Ord G* statistics.
+}
+\examples{
+r <- raster( matrix(rnorm(400), 20, 20) )
+w <- weight_matrix_circular_fade(7, 2)
+f <- weight_matrix_circular(11)
+st <- GetisOrdLocalStats(r, f)
+plot(GetisOrd(r, w, st))
+
 }
 
