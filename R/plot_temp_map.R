@@ -1,33 +1,31 @@
 #' This function is suitable for plotting raw temperatures encoded as a raster.
+#' @author Viliam Simko
 #'
 #' @param r Input raster containing temperature values
 #' @param title Title for the plot
 #' @param colorscale_title Title for the color legend
-#'
-#' @import dplyr
-#' @importFrom raster xyFromCell extent clump ncell values
-#' @importFrom scales alpha
+#' @param contour_thresh Values used for plotting contours.
+#' @param contour_col Two colors representing min and max thresholds.
+#' @param ctable Color table used for plotting the temperatures.
 #'
 #' @examples
 #' r <- raster(matrix(rnorm(400), 20))
 #' plot_temp_map(r, "Random temperatures")
 #'
+#' @importFrom graphics contour image legend mtext points rect
+#' @importFrom raster extent clump ncell values
+#' @importFrom scales alpha
 #' @export
 plot_temp_map <- function(
   r, title,
   colorscale_title = "",
   contour_thresh = NULL,
-  contour_quantiles = NULL,
   contour_col = c("blue", "red"),
   ctable = interpolate_colortable(howmany = 100,
-                                  "blue", "green", "yellow", "red"),
-  topn = 0, bottomn = 0)
+                                  "blue", "green", "yellow", "red")
+  )
 {
   # TODO: add sanity checks for all parameters
-
-  if (!is.null(contour_quantiles)) {
-    contour_thresh <- quantile(r, probs = contour_quantiles, na.rm = TRUE)
-  }
 
   alpha_of_map <- ifelse( is.null(contour_thresh), 1, .4)
 
@@ -39,23 +37,6 @@ plot_temp_map <- function(
        legend.args = list(text = colorscale_title,
                           side = 3, font = 2, line = 0, cex = 0.8)
   )
-
-  # top-order
-  xyFromCell(r, 1:ncell(r)) %>%
-    as.data.frame %>%
-    dplyr::select(lon = x, lat = y) %>%
-    mutate(score = values(r)) -> XY
-
-  # TODO: the "score" variable
-  if (topn > 0) {
-    XY %>% arrange(-score) %>% head(topn) %>%
-      points(pch = "O", cex = 3, col = "#aa0000")
-  }
-
-  if (bottomn > 0) {
-    XY %>% arrange(score) %>% head(bottomn) %>%
-      points(pch = "O", cex = 3, col = "#0000aa")
-  }
 
   # contours + legend
   if (!is.null(contour_thresh)) {
@@ -73,9 +54,5 @@ plot_temp_map <- function(
                       sprintf("heat island (%g)", round(contour_thresh[2], 2))
            ),
            fill = contour_col)
-  }
-
-  if (topn != 0 || bottomn != 0) {
-    mtext("Min/Max value indicated by circle", cex = .8)
   }
 }

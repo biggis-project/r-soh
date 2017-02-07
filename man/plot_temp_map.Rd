@@ -5,9 +5,8 @@
 \title{This function is suitable for plotting raw temperatures encoded as a raster.}
 \usage{
 plot_temp_map(r, title, colorscale_title = "", contour_thresh = NULL,
-  contour_quantiles = NULL, contour_col = c("blue", "red"),
-  ctable = interpolate_colortable(howmany = 100, "blue", "green", "yellow",
-  "red"), topn = 0, bottomn = 0)
+  contour_col = c("blue", "red"), ctable = interpolate_colortable(howmany =
+  100, "blue", "green", "yellow", "red"))
 }
 \arguments{
 \item{r}{Input raster containing temperature values}
@@ -15,6 +14,12 @@ plot_temp_map(r, title, colorscale_title = "", contour_thresh = NULL,
 \item{title}{Title for the plot}
 
 \item{colorscale_title}{Title for the color legend}
+
+\item{contour_thresh}{Values used for plotting contours.}
+
+\item{contour_col}{Two colors representing min and max thresholds.}
+
+\item{ctable}{Color table used for plotting the temperatures.}
 }
 \description{
 This function is suitable for plotting raw temperatures encoded as a raster.
@@ -24,4 +29,6 @@ r <- raster(matrix(rnorm(400), 20))
 plot_temp_map(r, "Random temperatures")
 
 }
-
+\author{
+Viliam Simko
+}
