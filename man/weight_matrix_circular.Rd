@@ -17,7 +17,7 @@ boolean square matrix
 Circular shape with a sharp falloff at the edge.
 }
 \examples{
-weight_matrix_circular(5)
-plot_weight_matrix(weight_matrix_circular(2))
+w <- weight_matrix_circular(5)
+plot_weight_matrix(w)
 }
 

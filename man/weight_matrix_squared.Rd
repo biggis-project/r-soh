@@ -7,8 +7,8 @@
 weight_matrix_squared(size)
 }
 \arguments{
-\item{size}{Odd number representing the matrix width and height.
-Minimal matrix size is 3x3.}
+\item{size}{Odd number representing the matrix width and height. Minimal
+matrix size is 3x3.}
 }
 \value{
 boolean square matrix

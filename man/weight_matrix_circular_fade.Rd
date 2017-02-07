@@ -17,7 +17,7 @@ square matrix of doubles
 Circular shape with sigmoid falloff at the edge.
 }
 \examples{
-weight_matrix_circular_fade(5,2)
-plot_weight_matrix(weight_matrix_circular_fade(11,2))
+w <- weight_matrix_circular_fade(21, 3)
+plot_weight_matrix(w)
 }
 

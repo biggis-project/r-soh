@@ -1,4 +1,12 @@
+#' Renders a plot showing the given weight matrix.
+#' @param w Weight matrix
+#' @param show.legend When TRUE, a legend is also rendered within the plot.
+#' @examples
+#' w <- weight_matrix_circular_fade(11,2)
+#' plot_weight_matrix(w)
+#' @export
 plot_weight_matrix <- function(w, show.legend = TRUE) {
+
   # sanity check
   stopifnot(is.matrix(w))
   stopifnot(is.logical(show.legend))
@@ -25,14 +33,17 @@ plot_weight_matrix <- function(w, show.legend = TRUE) {
            legend = c(sprintf("Min value = %.2f", round(min(w, na.rm = TRUE), 2)),
                       sprintf("Max value = %.2f", round(max(w, na.rm = TRUE), 2))
            ),
-           fill = c(first(col), last(col))
+           fill = c(col[1], col[length(col)])
     )
   }
+  cx <- .5 / (ncol(w) - 1)
+  cy <- .5 / (nrow(w) - 1)
+  rect(0 - cx, 0 - cy, 1 + cx, 1 + cy)
 }
 
 #' Just a simple square matrix.
-#' @param size Odd number representing the matrix width and height.
-#'   Minimal matrix size is 3x3.
+#' @param size Odd number representing the matrix width and height. Minimal
+#'   matrix size is 3x3.
 #' @return boolean square matrix
 #' @examples
 #' weight_matrix_squared(5)
@@ -52,8 +63,8 @@ weight_matrix_squared <- function(size) {
 #'   Minimal matrix size is 3x3.
 #' @return boolean square matrix
 #' @examples
-#' weight_matrix_circular(5)
-#' plot_weight_matrix(weight_matrix_circular(2))
+#' w <- weight_matrix_circular(5)
+#' plot_weight_matrix(w)
 #' @export
 weight_matrix_circular <- function(size) {
   # sanity checks
@@ -98,8 +109,8 @@ sigmoid_falloff <- function(x, size, fsize) {
 #'   Minimal matrix size is 3x3.
 #' @return square matrix of doubles
 #' @examples
-#' weight_matrix_circular_fade(5,2)
-#' plot_weight_matrix(weight_matrix_circular_fade(11,2))
+#' w <- weight_matrix_circular_fade(21, 3)
+#' plot_weight_matrix(w)
 #' @export
 weight_matrix_circular_fade <- function(size, fsize) {
   # sanity checks
