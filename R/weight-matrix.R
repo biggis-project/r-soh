@@ -1,9 +1,13 @@
 #' Renders a plot showing the given weight matrix.
+#' @author Viliam Simko
+#'
 #' @param w Weight matrix
 #' @param show.legend When TRUE, a legend is also rendered within the plot.
 #' @examples
 #' w <- weight_matrix_circular_fade(11,2)
 #' plot_weight_matrix(w)
+#'
+#' @import grDevices graphics
 #' @export
 plot_weight_matrix <- function(w, show.legend = TRUE) {
 
@@ -11,9 +15,15 @@ plot_weight_matrix <- function(w, show.legend = TRUE) {
   stopifnot(is.matrix(w))
   stopifnot(is.logical(show.legend))
 
-  col <- gray.colors(100)
-  image(w, col = col, axes = FALSE, asp = 1)
+  # plotting the matrix
+  image(w, col = gray.colors(100), axes = FALSE, asp = 1)
 
+  # plotting a box around the image
+  cx <- .5 / (ncol(w) - 1)
+  cy <- .5 / (nrow(w) - 1)
+  rect(0 - cx, 0 - cy, 1 + cx, 1 + cy)
+
+  # plotting the legend
   if (show.legend) {
     # matrix dimensions
     legend(1,1,
@@ -36,12 +46,11 @@ plot_weight_matrix <- function(w, show.legend = TRUE) {
            fill = c(col[1], col[length(col)])
     )
   }
-  cx <- .5 / (ncol(w) - 1)
-  cy <- .5 / (nrow(w) - 1)
-  rect(0 - cx, 0 - cy, 1 + cx, 1 + cy)
 }
 
 #' Just a simple square matrix.
+#' @author Viliam Simko
+#'
 #' @param size Odd number representing the matrix width and height. Minimal
 #'   matrix size is 3x3.
 #' @return boolean square matrix
@@ -55,10 +64,12 @@ weight_matrix_squared <- function(size) {
 
   wmatrix <- matrix(TRUE, size, size)
   stopifnot(is.logical(wmatrix)) # sanity check
-  return(wmatrix)
+  wmatrix
 }
 
 #' Circular shape with a sharp falloff at the edge.
+#' @author Viliam Simko
+#'
 #' @param size Odd number representing the matrix width and height.
 #'   Minimal matrix size is 3x3.
 #' @return boolean square matrix
@@ -84,6 +95,8 @@ weight_matrix_circular <- function(size) {
 }
 
 #' Helper function used in \code{sigmoid_falloff}. See example.
+#' @author Viliam Simko
+#'
 #' @param x X-coordinate.
 #' @return value on the sigmoid curve
 #' @examples
@@ -92,9 +105,11 @@ sigmoid <- function(x) 1/(1 + exp(-x))
 
 #' Helper function which produces a smooth transition from 1 to 0 with a
 #' sigmoidal falloff. See example.
+#' @author Viliam Simko
+#'
 #' @param x Input number on x-axis
 #' @param size Size of the interpolation
-#' @param fsize size of the fallof part
+#' @param fsize Size of the fallof part.
 #' @examples
 #' x <- 1:100
 #' y <- sigmoid_falloff(x, 100, 20)
@@ -105,8 +120,11 @@ sigmoid_falloff <- function(x, size, fsize) {
 }
 
 #' Circular shape with sigmoid falloff at the edge.
+#' @author Viliam Simko
+#'
 #' @param size Odd number representing the matrix width and height.
 #'   Minimal matrix size is 3x3.
+#' @param fsize Size of the fallof part.
 #' @return square matrix of doubles
 #' @examples
 #' w <- weight_matrix_circular_fade(21, 3)
