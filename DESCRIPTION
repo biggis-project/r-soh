@@ -7,6 +7,7 @@ Author: Viliam Simko, Julian Bruns
 LazyData: yes
 Imports:
     raster,
+    dplyr,
     scales
 Suggests:
     knitr,
