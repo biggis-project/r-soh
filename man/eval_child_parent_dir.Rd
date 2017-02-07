@@ -6,7 +6,17 @@
 \usage{
 eval_child_parent_dir(r_child, r_parent)
 }
+\arguments{
+\item{r_child}{Raster processed with a "smaller" weight matrix.}
+
+\item{r_parent}{Raster processed with a "larger" weight matrix.}
+}
+\value{
+A number between 0 and 1
+}
 \description{
 Evaluation metric (child -> parent)
 }
-
+\author{
+Viliam Simko
+}

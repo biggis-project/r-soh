@@ -18,4 +18,6 @@ Uses \link{raster} for plotting.
 plot_color_table(c("black", "red", "gold")) # German flag
 
 }
-
+\author{
+Viliam Simko
+}

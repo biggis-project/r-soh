@@ -1,10 +1,14 @@
 #' Helper functon to generates a color table.
+#' @author Viliam Simko
+#'
 #' @param howmany Number of elements of the resulting vector.
 #' @param ... A vecor of colors to be used for interpolation.
 #' @return Returns a vector representing the color table.
 #' @examples
 #' ct <- interpolate_colortable(10, "red", "green" ,"blue")
 #' plot_color_table(ct)
+#'
+#' @import grDevices
 #' @export
 interpolate_colortable <- function(howmany, ...) {
   cmap <- colorRampPalette(c(...))
@@ -14,12 +18,14 @@ interpolate_colortable <- function(howmany, ...) {
 
 #' Plots a color table (useful for debugging).
 #' Uses \link{raster} for plotting.
+#' @author Viliam Simko
 #'
 #' @param ct Vector of colors
 #' @examples
 #' plot_color_table(c("black", "red", "gold")) # German flag
 #'
 #' @importFrom raster raster plot
+#' @importFrom graphics par
 #' @export
 plot_color_table <- function(ct) {
   x <- raster(nrows = length(ct), ncols = 1, vals = 0:(length(ct) - 1))

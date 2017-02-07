@@ -22,4 +22,13 @@ New raster of the same size as the original input raster \code{r}.
 Getis-Ord G* statistics using a weight matrix.
 Data on the border are padded with the mean value during convolution.
 }
+\examples{
+library(raster)
+r <- raster(matrix(rnorm(400), 20))
+w <- weight_matrix_circular_fade(7, 2)
+plot(GetisOrd(r, w))
 
+}
+\author{
+Viliam Simko
+}

@@ -1,3 +1,15 @@
+#' This function is suitable for plotting zscores encoded as a raster.
+#' @author Viliam Simko
+#'
+#' @param r Raster to be plotted.
+#' @param sigma_thresh Sigma (zscore) value used for filtering significant
+#'   raster cells.
+#' @param hotspot_quantile_thresh Quantile value used as a threshold for
+#'   plotting hotspots.
+#' @param title Title of the plot
+#'
+#' @importFrom raster quantile plot contour
+#' @import grDevices
 #' @export
 plot_zscore <- function(
   r, sigma_thresh = 5,

@@ -1,11 +1,21 @@
 #' Getis-Ord G* statistics using a weight matrix.
 #' Data on the border are padded with the mean value during convolution.
+#' @author Viliam Simko
 #'
 #' @param r Input raster
 #' @param w Square weight matrix with odd number of rows/columns.
 #' @param st Expecting a list of local statistics, see
 #'   \link{GetisOrdStandardStats} and \link{GetisOrdLocalStats}
 #' @return New raster of the same size as the original input raster \code{r}.
+#'
+#' @importFrom methods is
+#' @importFrom raster raster focal
+#'
+#' @examples
+#' library(raster)
+#' r <- raster(matrix(rnorm(400), 20))
+#' w <- weight_matrix_circular_fade(7, 2)
+#' plot(GetisOrd(r, w))
 #'
 #' @export
 GetisOrd <- function(r, w, st = GetisOrdStandardStats(r)) {

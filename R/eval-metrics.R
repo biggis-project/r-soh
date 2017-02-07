@@ -1,4 +1,10 @@
 #' Evaluation metric (child -> parent)
+#' @author Viliam Simko
+#'
+#' @param r_child Raster processed with a "smaller" weight matrix.
+#' @param r_parent Raster processed with a "larger" weight matrix.
+#' @return A number between 0 and 1
+#'
 #' @importFrom raster clump unique values
 #' @export
 eval_parent_child_dir <- function(r_child, r_parent) {
@@ -16,6 +22,12 @@ eval_parent_child_dir <- function(r_child, r_parent) {
 }
 
 #' Evaluation metric (child -> parent)
+#' @author Viliam Simko
+#'
+#' @param r_child Raster processed with a "smaller" weight matrix.
+#' @param r_parent Raster processed with a "larger" weight matrix.
+#' @return A number between 0 and 1
+#'
 #' @importFrom raster clump unique values
 #' @export
 eval_child_parent_dir <- function(r_child, r_parent) {

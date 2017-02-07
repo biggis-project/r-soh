@@ -20,5 +20,8 @@ Helper functon to generates a color table.
 \examples{
 ct <- interpolate_colortable(10, "red", "green" ,"blue")
 plot_color_table(ct)
-}
 
+}
+\author{
+Viliam Simko
+}
