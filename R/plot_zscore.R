@@ -14,7 +14,8 @@
 plot_zscore <- function(
   r, sigma_thresh = 5,
   hotspot_quantile_thresh = .01,
-  title = NULL)
+  title = NULL,
+  legend=TRUE)
 {
 
   hotspots <- quantile(r, na.rm = TRUE,
@@ -36,18 +37,21 @@ plot_zscore <- function(
   contour(rth, lwd = 4, add = TRUE, levels = hotspots, col = c("blue", "red"))
 
   e <- extent(r)
-  legend(e@xmax, e@ymin,
-         xjust = 1,
-         yjust = 0,
-         bg = rgb(1, 1, 1, 0.85),
-         legend = c(sprintf("top %g%% quantile hotspots (%g)",
-                            round( hotspot_quantile_thresh * 100, 2),
-                            round( hotspots[2], 2)),
-                    sprintf("bottom %g%% quantile hotspots (%g)",
-                            round( hotspot_quantile_thresh * 100, 2),
-                            round( hotspots[1], 2)) ),
-         fill = c("red", "blue"))
-
+  if(legend==TRUE){
+    
+    legend(e@xmax, e@ymin,
+           xjust = 1,
+           yjust = 0,
+           bg = rgb(1, 1, 1, 0.85),
+           legend = c(sprintf("top %g%% quantile hotspots (%g)",
+                              round( hotspot_quantile_thresh * 100, 2),
+                              round( hotspots[2], 2)),
+                      sprintf("bottom %g%% quantile hotspots (%g)",
+                              round( hotspot_quantile_thresh * 100, 2),
+                              round( hotspots[1], 2)) ),
+           fill = c("red", "blue"))
+    
+  }
   if (!is.null(title)) {
     mtext(title, cex = .8)
   }
